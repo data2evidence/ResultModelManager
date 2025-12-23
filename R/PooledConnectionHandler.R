@@ -229,9 +229,9 @@ PooledConnectionHandler <- R6::R6Class(
           data <- self$queryFunction(sql, snakeCaseToCamelCase = snakeCaseToCamelCase, connection = conn)
         },
         error = function(error) {
-          if (self$dbms() %in% c("postgresql", "redshift")) {
-            self$executeFunction("ABORT;", conn)
-          }
+          # if (self$dbms() %in% c("postgresql", "redshift")) {
+          #   self$executeFunction("ABORT;", conn)
+          # }
           stop(paste0(sql, "\n\n", error))
         }
       )
@@ -257,9 +257,9 @@ PooledConnectionHandler <- R6::R6Class(
           self$executeFunction(sql, conn)
         },
         error = function(error) {
-          if (self$dbms() %in% c("postgresql", "redshift")) {
-            self$executeFunction("ABORT;", conn)
-          }
+          # if (self$dbms() %in% c("postgresql", "redshift")) {
+          #   self$executeFunction("ABORT;", conn)
+          # }
           stop(paste0(sql, "\n\n", error))
         }
       )
