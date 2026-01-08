@@ -180,9 +180,9 @@ ConnectionHandler <- R6::R6Class(
           data <- self$queryFunction(sql, snakeCaseToCamelCase = snakeCaseToCamelCase)
         },
         error = function(error) {
-          if (self$dbms() %in% c("postgresql", "redshift")) {
-            DatabaseConnector::dbExecute(self$getConnection(), "ABORT;")
-          }
+          # if (self$dbms() %in% c("postgresql", "redshift")) {
+          #   DatabaseConnector::dbExecute(self$getConnection(), "ABORT;")
+          # }
           stop(paste0(sql, "\n\n", error))
         }
       )
@@ -202,9 +202,9 @@ ConnectionHandler <- R6::R6Class(
           self$executeFunction(sql)
         },
         error = function(error) {
-          if (self$dbms() %in% c("postgresql", "redshift")) {
-            self$executeFunction("ABORT;")
-          }
+          # if (self$dbms() %in% c("postgresql", "redshift")) {
+          #   self$executeFunction("ABORT;")
+          # }
           stop(paste0(sql, "\n\n", error))
         }
       )
